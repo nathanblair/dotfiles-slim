@@ -6,7 +6,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/bundle')
-  Plug 'dracula/vim', {'as': 'vim-dracula-theme'}
+  "Plug 'dracula/vim', {'as': 'vim-dracula-theme'}
   "Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'scrooloose/nerdtree'
   Plug 'scrooloose/nerdcommenter'
@@ -31,7 +31,7 @@ augroup colorscheme_customization
   autocmd ColorScheme dracula highlight DraculaBgDarker ctermbg=244 guibg=#101220
   autocmd ColorScheme dracula highlight DraculaTodo cterm=bold ctermfg=cyan gui=bold guifg=cyan guibg=black
 augroup END
-color dracula
+"color dracula
 
 
 " NERDTree

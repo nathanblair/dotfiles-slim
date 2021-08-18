@@ -19,7 +19,7 @@ set wildcharm=<C-z>
 set mouse=nv
 
 " Viewing and getting around
-set relativenumber
+"set relativenumber
 set nostartofline
 set listchars=""
 set cmdheight=1
@@ -61,7 +61,6 @@ let g:is_posix=0
 
 " Wrap if in preview window
 autocmd BufWinEnter * if &previewwindow | setlocal wrap | endif
-autocmd BufWinEnter * if nvim_win_get_config(0)["relative"] != "" | setlocal nofoldenable | endif
 
 autocmd BufWinEnter * :call UpdateWorkingPathRoot()
 
