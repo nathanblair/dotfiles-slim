@@ -1,0 +1,77 @@
+# Default options for commands
+alias mkdir='mkdir -pv'
+alias du='du -ch'
+alias df='df -H'
+alias mv='mv -vi'
+alias cp='cp -vi'
+
+# File listing
+if [[ "${OSTYPE}" == "darwin"* ]]; then
+    alias make="gmake"
+    alias ls="ls -G"
+else
+    alias ls="ls --color=always"
+fi
+alias l='ls -h1'
+alias ll='ls -lh'
+alias la='ls -Ah1'
+alias lla='ls -lAh'
+alias dir='dir --color=auto'
+
+# CLI application launching
+alias tmux='tmux -2'
+
+# Disk usage
+alias dfh='df -h ~'
+alias dfr='df -h /'
+
+# Git alias commands
+alias gd='git diff'
+alias ga='git add'
+alias gaa='git add --all'
+alias gc='git commit'
+alias gcm='git commit -m'
+alias gca='git commit --all'
+alias gcam='git commit --all -m'
+alias gch='git checkout'
+alias gst='git status'
+alias glg='git log --graph'
+alias glgs='git log --graph --stat'
+alias glgp='git log --graph --patch'
+alias gpull='git pull'
+alias gpush='git push'
+alias gfetch='git fetch'
+alias gswitch='git switch'
+
+# Tree command should always show directories first
+alias tree='tree --dirsfirst --noreport'
+
+# Void package manager
+alias xs='xbps-query -Rs'
+alias xf='xbps-query'
+alias xi='sudo xbps-install -S'
+alias xu='sudo xbps-install -Su'
+alias xr='sudo xbps-remove -Ro'
+
+# Docker
+alias dcp='docker container prune'
+alias dis='docker images'
+alias disa='docker images -a'
+alias dp='dcp -f && docker image prune -f && dis'
+alias dpa='dcp -f && docker image prune -af && disa'
+alias dcla='docker container list --all'
+alias dpsa='docker ps --all'
+alias dcrit='docker container run -i -t'
+alias dib='docker image build --force-rm --rm'
+
+# Python
+alias python='python3'
+alias pip='pip3'
+
+# Terraform
+alias tf='terraform'
+
+# AWS-CLI
+# Because no one is maintaining a reliable repository for it...
+#alias aws='docker run --rm -e AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} -e AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} -e AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION} -it amazon/aws-cli'
+
