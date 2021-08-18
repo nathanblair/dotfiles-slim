@@ -1,0 +1,82 @@
+" Plugin loading and handling
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/bundle')
+  Plug 'dracula/vim', {'as': 'vim-dracula-theme'}
+  "Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'scrooloose/nerdtree'
+  Plug 'scrooloose/nerdcommenter'
+  Plug 'cohama/lexima.vim'
+  Plug 'thaerkh/vim-indentguides'
+  Plug 'machakann/vim-sandwich'
+  "Plug 'sheerun/vim-polyglot'
+  "Plug 'junegunn/goyo.vim'
+  "Plug 'ap/vim-buftabline'
+  "Plug 'ctrlpvim/ctrlp.vim'
+  "Plug 'vim-airline/vim-airline'
+  "Plug 'tpope/vim-fugitive'
+  "Plug 'mhinz/vim-signify'
+call plug#end()
+
+" Color scheme
+set termguicolors
+augroup colorscheme_customization
+  "autocmd ColorScheme dracula highlight Normal ctermbg=244 guibg=#050506 ctermbg=NONE
+  autocmd ColorScheme dracula highlight Normal ctermbg=244 guibg=NONE ctermbg=NONE
+  autocmd ColorScheme dracula highlight DraculaBgDark ctermbg=244 guibg=#172030
+  autocmd ColorScheme dracula highlight DraculaBgDarker ctermbg=244 guibg=#101220
+  autocmd ColorScheme dracula highlight DraculaTodo cterm=bold ctermfg=cyan gui=bold guifg=cyan guibg=black
+augroup END
+color dracula
+
+
+" NERDTree
+nnoremap <silent> <C-b> :NERDTreeToggle<CR>
+
+" NERDCommenter
+nnoremap <silent> <Leader>cc :call nerdcommenter#Comment(0, 'toggle')<CR>
+vnoremap <silent> <Leader>cc :call nerdcommenter#Comment(0, 'toggle')<CR>
+
+" -------------------------------------------------------------"
+" vim-plug settings                                         PS
+" -------------------------------------------------------------"
+" NERDTree
+let g:NERDTreeSortHiddenFirst=1
+let g:NERDTreeChDirMode=2
+let g:NERDTreeHijackNetrw=1
+let g:NERDTreeMinimalUI=1
+let g:NERDTreeIgnore=['^__pycache__']
+let g:NERDTreeCascadeSingleChildDir=0
+let g:NERDTreeCascadeOpenSingleChildDir=0
+let g:NERDTreeStatusline='%( %{pathshorten(fnamemodify(getcwd(), ":~"))}%)'
+
+" NERDCommenter
+let g:NERDCreateDefaultMappings=0
+
+" Vim Airline
+"let g:airline_extensions = [ ]
+let g:airline_extensions=[
+  \'branch',
+  \'quickfix',
+  \'coc',
+  \'tabline',
+\]
+let g:airline_powerline_fonts = 1
+function! AirlineInit()
+  call airline#parts#define_function('filesize', 'GetFileSize')
+  call airline#parts#define_condition('filesize', 'expand("%:t") != ""')
+
+  let g:airline_section_a = airline#section#create(['%{PrettyPrintCurrentDirectory()}'])
+  "let g:airline_section_z = airline#section#create(['filesize', ':%{col(\'.\')}'])
+  let g:airline_section_z = airline#section#create(['filesize'])
+
+  let g:airline_symbols.dirty='✗'
+endfunction
+autocmd User AirlineAfterInit call AirlineInit()
+
+
+" vim:ft=vim
