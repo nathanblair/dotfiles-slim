@@ -7,6 +7,7 @@ endif
 
 call plug#begin('~/.vim/bundle')
   "Plug 'dracula/vim', {'as': 'vim-dracula-theme'}
+  Plug 'drewtempelmeyer/palenight.vim'
   "Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'scrooloose/nerdtree'
   Plug 'scrooloose/nerdcommenter'
@@ -24,14 +25,7 @@ call plug#end()
 
 " Color scheme
 set termguicolors
-augroup colorscheme_customization
-  "autocmd ColorScheme dracula highlight Normal ctermbg=244 guibg=#050506 ctermbg=NONE
-  autocmd ColorScheme dracula highlight Normal ctermbg=244 guibg=NONE ctermbg=NONE
-  autocmd ColorScheme dracula highlight DraculaBgDark ctermbg=244 guibg=#172030
-  autocmd ColorScheme dracula highlight DraculaBgDarker ctermbg=244 guibg=#101220
-  autocmd ColorScheme dracula highlight DraculaTodo cterm=bold ctermfg=cyan gui=bold guifg=cyan guibg=black
-augroup END
-"color dracula
+color palenight
 
 
 " NERDTree
@@ -56,27 +50,6 @@ let g:NERDTreeStatusline='%( %{pathshorten(fnamemodify(getcwd(), ":~"))}%)'
 
 " NERDCommenter
 let g:NERDCreateDefaultMappings=0
-
-" Vim Airline
-"let g:airline_extensions = [ ]
-let g:airline_extensions=[
-  \'branch',
-  \'quickfix',
-  \'coc',
-  \'tabline',
-\]
-let g:airline_powerline_fonts = 1
-function! AirlineInit()
-  call airline#parts#define_function('filesize', 'GetFileSize')
-  call airline#parts#define_condition('filesize', 'expand("%:t") != ""')
-
-  let g:airline_section_a = airline#section#create(['%{PrettyPrintCurrentDirectory()}'])
-  "let g:airline_section_z = airline#section#create(['filesize', ':%{col(\'.\')}'])
-  let g:airline_section_z = airline#section#create(['filesize'])
-
-  let g:airline_symbols.dirty='✗'
-endfunction
-autocmd User AirlineAfterInit call AirlineInit()
 
 
 " vim:ft=vim
